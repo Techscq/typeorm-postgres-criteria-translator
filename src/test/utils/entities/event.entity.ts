@@ -1,0 +1,33 @@
+import type { DomainEvent } from '../fake-entities.js';
+import { EntitySchema } from 'typeorm';
+
+export const EventEntitySchema = new EntitySchema<DomainEvent<any>>({
+  name: 'Event',
+  tableName: 'event',
+  columns: {
+    id: {
+      type: 'int',
+      generated: true,
+      primary: true,
+    },
+    event_type: {
+      type: 'varchar',
+      length: 200,
+    },
+    event_body: {
+      type: 'jsonb',
+    },
+    occurred_on: {
+      type: 'timestamp',
+      createDate: true,
+    },
+    event_version: {
+      type: 'int',
+      default: 1,
+    },
+    direct_tags: {
+      type: 'jsonb',
+      nullable: true,
+    },
+  },
+});

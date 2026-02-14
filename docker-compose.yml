@@ -1,0 +1,16 @@
+name: typeorm-postgres-criteria-translator
+services:
+  postgres:
+    image: postgres:latest
+    container_name: typeorm-postgres-criteria-translator
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE_NAME}
+    ports:
+      - '${DB_PORT}:5432'
+    volumes:
+      - pg_data_typeorm_postgres_criteria_translator:/var/lib/postgresql
+    restart: always
+
+volumes:
+  pg_data_typeorm_postgres_criteria_translator:
