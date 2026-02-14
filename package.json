@@ -1,0 +1,71 @@
+{
+  "name": "@nulledexp/typeorm-postgres-criteria-translator",
+  "version": "1.0.0",
+  "description": "TypeORM PostgreSQL translator for @nulledexp/translatable-criteria",
+  "keywords": [
+    "criteria",
+    "query",
+    "translator",
+    "typeorm",
+    "postgresql",
+    "database",
+    "translatable-criteria"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "rimraf ./dist && tsc",
+    "ci": "npm run check-circular && npm run check-format && npm run check-exports && npm run test",
+    "test": "vitest --config integration.vitest.config.ts run",
+    "format": "prettier --write .",
+    "docker": "docker compose up",
+    "build-watch": "tsc --watch",
+    "dev": "vitest --config integration.vitest.config.ts",
+    "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
+    "check-format": "prettier --check .",
+    "check-circular": "npx madge --circular --extensions ts ./src",
+    "local-release": "changeset version && changeset publish",
+    "prepublishOnly": "npm run build && npm run test"
+  },
+  "peerDependencies": {
+    "@nulledexp/translatable-criteria": "4.0.0",
+    "typeorm": "0.3.26"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
+    "@changesets/cli": "^2.29.8",
+    "@types/node": "^25.2.3",
+    "@types/pg": "^8.16.0",
+    "@types/uuid": "^10.0.0",
+    "dotenv": "^17.2.4",
+    "madge": "^8.0.0",
+    "pg": "^8.18.0",
+    "prettier": "^3.8.1",
+    "rimraf": "^6.1.2",
+    "ts-unused-exports": "^11.0.1",
+    "tsx": "^4.21.0",
+    "typeorm": "0.3.26",
+    "typescript": "^5.9.3",
+    "uuid": "^13.0.0",
+    "vitest": "^4.0.18"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Nelson Cabrera <contact@nelsoncabrera.dev>",
+  "homepage": "https://github.com/Techscq/typeorm-postgres-criteria-translator",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Techscq/typeorm-postgres-criteria-translator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Techscq/typeorm-postgres-criteria-translator/issues"
+  }
+}
