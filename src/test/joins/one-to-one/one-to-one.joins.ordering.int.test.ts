@@ -70,18 +70,18 @@ describe('TypeOrmPostgresTranslator - Ordering with One-to-One Joins', () => {
     actualUsersFromDB = (
       await dataSource
         .getRepository(UserEntity)
-        .find({ relations: ['profile', 'posts'] })
+        .find({ relations: { profile: true, posts: true } })
     ).sort((a, b) => a.email.localeCompare(b.email));
 
     actualUserProfilesFromDB = await dataSource
       .getRepository(UserProfileEntity)
-      .find({ relations: ['user'] });
+      .find({ relations: { user: true } });
     actualDomainEventsFromDB = await dataSource
       .getRepository(EventEntitySchema)
       .find();
     actualPostsFromDB = await dataSource
       .getRepository(PostEntity)
-      .find({ relations: ['publisher'] });
+      .find({ relations: { publisher: true } });
   });
 
   beforeEach(() => {

@@ -37,7 +37,11 @@ describe('TypeOrmPostgresTranslator - Advanced Joins & Edge Cases', () => {
   beforeAll(async () => {
     const dataSource = await initializeDataSourceService(false);
     actualUsersFromDB = await dataSource.getRepository(UserEntity).find({
-      relations: ['profile', 'permissions', 'posts', 'posts.comments'],
+      relations: {
+        profile: true,
+        permissions: true,
+        posts: { comments: true },
+      },
     });
   });
 
@@ -242,7 +246,7 @@ describe('TypeOrmPostgresTranslator - Advanced Joins & Edge Cases', () => {
 
     const targetPost = await postRepo.findOne({
       where: { title: 'Post Title 1' },
-      relations: ['publisher', 'comments', 'comments.publisher'],
+      relations: { publisher: true, comments: { publisher: true } },
     });
 
     if (!targetPost) {
@@ -320,13 +324,16 @@ describe('TypeOrmPostgresTranslator - Advanced Joins & Edge Cases', () => {
     // we don't accidentally fetch addresses for User A (post author) due to alias collision.
     const targetPost = await postRepo.findOne({
       where: { title: 'Post Title 1' },
-      relations: [
-        'publisher',
-        'publisher.addresses',
-        'comments',
-        'comments.publisher',
-        'comments.publisher.addresses',
-      ],
+      relations: {
+        publisher: {
+          addresses: true,
+        },
+        comments: {
+          publisher: {
+            addresses: true,
+          },
+        },
+      },
     });
 
     if (!targetPost) throw new Error('Post Title 1 not found');

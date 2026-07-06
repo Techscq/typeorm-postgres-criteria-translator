@@ -54,7 +54,7 @@ describe('TypeOrmPostgresTranslator - Multi-Level Join Translation', () => {
   beforeAll(async () => {
     const dataSource = await initializeDataSourceService(false);
     actualUsersFromDB = await dataSource.getRepository(UserEntity).find({
-      relations: ['posts', 'posts.comments', 'posts.comments.publisher'],
+      relations: { posts: { comments: { publisher: true } } },
     });
   });
 

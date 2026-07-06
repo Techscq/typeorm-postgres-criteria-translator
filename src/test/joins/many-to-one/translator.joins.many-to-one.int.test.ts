@@ -23,7 +23,7 @@ describe('TypeOrmPostgresTranslator - Many-to-One Join Translation', () => {
     const dataSource = await initializeDataSourceService(false);
     actualPostsFromDB = await dataSource
       .getRepository(PostEntity)
-      .find({ relations: ['publisher'] });
+      .find({ relations: { publisher: true } });
   });
 
   beforeEach(() => {

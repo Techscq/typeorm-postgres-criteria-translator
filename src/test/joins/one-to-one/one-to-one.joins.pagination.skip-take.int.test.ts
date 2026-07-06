@@ -65,7 +65,7 @@ describe('TypeOrmPostgresTranslator - Skip/Take Pagination with One-to-One Joins
     const dataSource = await initializeDataSourceService(false);
     actualUsersFromDB = await dataSource
       .getRepository(UserEntity)
-      .find({ relations: ['profile'] });
+      .find({ relations: { profile: true } });
   });
 
   beforeEach(() => {

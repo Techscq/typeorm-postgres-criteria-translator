@@ -118,9 +118,7 @@ export class TypeOrmPostgresTranslator<
 
   private collectRelationIds(
     criteria:
-      | RootCriteria<any>
-      | InnerJoinCriteria<any>
-      | LeftJoinCriteria<any>,
+      RootCriteria<any> | InnerJoinCriteria<any> | LeftJoinCriteria<any>,
     pathPrefix: string,
     collector: string[],
   ) {

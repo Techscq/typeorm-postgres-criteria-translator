@@ -48,10 +48,10 @@ describe('TypeOrmPostgresTranslator - Relation IDs Loading (SelectType.ID_ONLY)'
     const dataSource = await initializeDataSourceService(false);
     actualUsersFromDB = await dataSource
       .getRepository(UserEntity)
-      .find({ relations: ['permissions', 'profile'] });
+      .find({ relations: { permissions: true, profile: true } });
     actualCommentsFromDB = await dataSource
       .getRepository(PostCommentEntity)
-      .find({ relations: ['post'] });
+      .find({ relations: { post: true } });
     actualPostsFromDB = await dataSource.getRepository(PostEntity).find();
   });
 

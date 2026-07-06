@@ -32,7 +32,7 @@ describe('TypeOrmPostgresTranslator - Pagination and Ordering', () => {
 
     actualPostsFromDB = (
       await dataSource.getRepository(PostEntity).find({
-        relations: ['publisher'],
+        relations: { publisher: true },
       })
     ).sort((a, b) => {
       if (a.publisher && b.publisher) {

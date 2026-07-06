@@ -50,10 +50,10 @@ describe('TypeOrmPostgresTranslator - Data Hydration (getMany/getOne)', () => {
     const dataSource = await initializeDataSourceService(false);
     actualUsersFromDB = await dataSource
       .getRepository(UserEntity)
-      .find({ relations: ['posts', 'permissions', 'addresses'] });
+      .find({ relations: { posts: true, permissions: true, addresses: true } });
     actualPostsFromDB = await dataSource
       .getRepository(PostEntity)
-      .find({ relations: ['publisher', 'comments', 'comments.publisher'] });
+      .find({ relations: { publisher: true, comments: { publisher: true } } });
   });
 
   beforeEach(() => {

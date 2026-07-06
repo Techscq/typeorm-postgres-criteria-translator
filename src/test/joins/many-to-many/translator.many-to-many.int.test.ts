@@ -28,10 +28,10 @@ describe('TypeOrmPostgresTranslator - Many-to-Many Relationships', () => {
     const dataSource = await initializeDataSourceService(false);
     actualUsersFromDB = await dataSource
       .getRepository(UserEntity)
-      .find({ relations: ['permissions'] });
+      .find({ relations: { permissions: true } });
     actualPermissionsFromDB = await dataSource
       .getRepository(PermissionEntity)
-      .find({ relations: ['users'] });
+      .find({ relations: { users: true } });
   });
 
   beforeEach(() => {

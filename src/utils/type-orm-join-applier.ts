@@ -75,9 +75,7 @@ export class TypeOrmJoinApplier<T extends ObjectLiteral> {
    */
   private canOptimizeJoin(
     criteria:
-      | InnerJoinCriteria<any>
-      | LeftJoinCriteria<any>
-      | OuterJoinCriteria<any>,
+      InnerJoinCriteria<any> | LeftJoinCriteria<any> | OuterJoinCriteria<any>,
     parameters:
       | PivotJoin<CriteriaSchema, CriteriaSchema>
       | SimpleJoin<CriteriaSchema, CriteriaSchema>,
@@ -137,9 +135,7 @@ export class TypeOrmJoinApplier<T extends ObjectLiteral> {
    */
   private buildOnCondition(
     criteria:
-      | InnerJoinCriteria<any>
-      | LeftJoinCriteria<any>
-      | OuterJoinCriteria<any>,
+      InnerJoinCriteria<any> | LeftJoinCriteria<any> | OuterJoinCriteria<any>,
     joinAlias: string,
   ): { onConditionClause?: string; onConditionParams: ObjectLiteral } {
     if (criteria.rootFilterGroup.items.length === 0) {
@@ -167,9 +163,7 @@ export class TypeOrmJoinApplier<T extends ObjectLiteral> {
    */
   private handleSelection(
     criteria:
-      | InnerJoinCriteria<any>
-      | LeftJoinCriteria<any>
-      | OuterJoinCriteria<any>,
+      InnerJoinCriteria<any> | LeftJoinCriteria<any> | OuterJoinCriteria<any>,
     parameters:
       | PivotJoin<CriteriaSchema, CriteriaSchema>
       | SimpleJoin<CriteriaSchema, CriteriaSchema>,
@@ -201,9 +195,7 @@ export class TypeOrmJoinApplier<T extends ObjectLiteral> {
    */
   private applyFullEntitySelection(
     criteria:
-      | InnerJoinCriteria<any>
-      | LeftJoinCriteria<any>
-      | OuterJoinCriteria<any>,
+      InnerJoinCriteria<any> | LeftJoinCriteria<any> | OuterJoinCriteria<any>,
     parameters:
       | PivotJoin<CriteriaSchema, CriteriaSchema>
       | SimpleJoin<CriteriaSchema, CriteriaSchema>,

@@ -48,10 +48,10 @@ describe('TypeOrmPostgresTranslator - One-to-Many Join Translation', () => {
     const dataSource = await initializeDataSourceService(false);
     actualPostsFromDB = await dataSource
       .getRepository(PostEntity)
-      .find({ relations: ['comments', 'publisher'] });
+      .find({ relations: { comments: true, publisher: true } });
     actualUsersFromDB = await dataSource
       .getRepository(UserEntity)
-      .find({ relations: ['posts'] });
+      .find({ relations: { posts: true } });
   });
 
   beforeEach(() => {
